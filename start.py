@@ -6,7 +6,7 @@ sip="192.168.122.1"
 sport=4321
 
 print "** Enter authentication details **"
-time.sleep(2)
+time.sleep(1)
 #server username
 uname=raw_input("Enter username: ")
 #server password
@@ -15,10 +15,12 @@ x.sendto(uname,(sip,sport))
 x.sendto(passwd,(sip,sport))
 
 #after username and password verification
-if x.recvfrom(100)[0]=="success" :
+msg=x.recvfrom(100)[0]
+if msg=="success" :
 	print "Authentication successfull!"
 	print "Services are being loaded..."
 	time.sleep(2)
 	execfile('saas.py')
 else :
 	print "Authentication unsuccessfull!"
+	print msg
